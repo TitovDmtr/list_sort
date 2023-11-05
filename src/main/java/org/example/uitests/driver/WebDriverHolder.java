@@ -1,0 +1,45 @@
+package org.example.uitests.driver;
+
+import org.openqa.selenium.WebDriver;
+
+public class WebDriverHolder {
+    private static WebDriverHolder instance = null;
+
+    private final WebDriver driver;
+
+    WebDriverHolder() {
+        driver = WebDriverFactory3.getDriver();
+    }
+
+    public static WebDriverHolder getInstance() {
+        if (instance == null) {
+            instance = new WebDriverHolder();
+        }
+        return instance;
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public void driverQuit() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+// Basic view of "Single tone" pattern
+
+//public class WebDriverHolder {
+//    private static WebDriverHolder instance = null;
+//
+//    WebDriverHolder() {
+//    }
+//
+//    public static WebDriverHolder getInstance() {
+//        if (instance == null) {
+//            instance = new WebDriverHolder();
+//        }
+//        return instance;
+//    }
