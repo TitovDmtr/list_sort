@@ -49,7 +49,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        ITestListener.super.onStart(context);
+//        ITestListener.super.onStart(context);
         clearScreenshotsFolder();
     }
 

@@ -8,6 +8,7 @@ import org.testng.annotations.Listeners;
 
 @Listeners({TestListener.class})
 public class BaseTests {
+
     @BeforeSuite
     public void beforeClass() {
         WebDriverHolder.getInstance().getDriver();
