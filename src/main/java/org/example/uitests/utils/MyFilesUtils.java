@@ -42,8 +42,30 @@ public class MyFilesUtils {
         return null;
     }
 
-//    public static void main(String[] args) throws IOException {
-//        generateLoremFile();
-//    }
+    public static void clearFilesFolder() {
+        createOrCleanDirectory("files");
+    }
+    public static void clearScreenshotsFolder() {
+        createOrCleanDirectory("screenshots");
+    }
+
+    public static void createOrCleanDirectory(String dirName) {
+        File fileDir = new File(dirName);
+        if (!fileDir.exists()) {
+            fileDir.mkdir();
+        } else {
+            try {
+                FileUtils.cleanDirectory(fileDir);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        generateLoremFile();
+    }
+
+
 
 }

@@ -29,27 +29,40 @@ public class ProductsTests extends BaseTests {
     public void checkSortingTest() throws InterruptedException {
         ProductPageShop productPageShop = new ProductPageShop();
         List<Product> productsAsIs = productPageShop.getProducts();
-
         List<Product> productsAfterSorting = productPageShop.sortBy(SortDirection.PRICE_LOW_TO_HIGH).getProducts();
-
         Collections.sort(productsAsIs, new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
                 return o1.getPrice().compareTo(o2.getPrice());
             }
         });
-
         Assert.assertEquals(productsAsIs, productsAfterSorting);
     }
 
     @Test
-    public void checkSortingTestCustom() throws InterruptedException {
+    public void checkSortingAToZTest() throws InterruptedException {
         ProductPageShop productPageShop = new ProductPageShop();
         List<Product> productsAsIs = productPageShop.showPerPage(ProductsPerPage.SHOW_60).getProducts();
-
         List<Product> productsAfterSorting = productPageShop.showPerPage(ProductsPerPage.SHOW_60).sortBy(SortDirection.NAME_A_TO_Z).getProducts();
         Collections.sort(productsAsIs, Product.getComparatorForSorting(SortDirection.NAME_A_TO_Z));
+        Assert.assertEquals(productsAsIs, productsAfterSorting);
+    }
 
+    @Test
+    public void checkSortingZToATest() throws InterruptedException {
+        ProductPageShop productPageShop = new ProductPageShop();
+        List<Product> productsAsIs = productPageShop.showPerPage(ProductsPerPage.SHOW_60).getProducts();
+        List<Product> productsAfterSorting = productPageShop.showPerPage(ProductsPerPage.SHOW_60).sortBy(SortDirection.NAME_Z_TO_A).getProducts();
+        Collections.sort(productsAsIs, Product.getComparatorForSorting(SortDirection.NAME_Z_TO_A));
+        Assert.assertEquals(productsAsIs, productsAfterSorting);
+    }
+
+    @Test
+    public void checkSortingLowToHighTest() throws InterruptedException {
+        ProductPageShop productPageShop = new ProductPageShop();
+        List<Product> productsAsIs = productPageShop.showPerPage(ProductsPerPage.SHOW_60).getProducts();
+        List<Product> productsAfterSorting = productPageShop.showPerPage(ProductsPerPage.SHOW_60).sortBy(SortDirection.PRICE_HIGH_TO_LOW).getProducts();
+        Collections.sort(productsAsIs, Product.getComparatorForSorting(SortDirection.PRICE_HIGH_TO_LOW));
         Assert.assertEquals(productsAsIs, productsAfterSorting);
     }
 }

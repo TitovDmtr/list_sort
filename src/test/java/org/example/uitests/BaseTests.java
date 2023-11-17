@@ -4,7 +4,9 @@ import org.example.uitests.driver.WebDriverHolder;
 import org.example.uitests.utils.ConfigProvider;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
+@Listeners({TestListener.class})
 public class BaseTests {
     @BeforeSuite
     public void beforeClass() {
