@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
+import static org.example.uitests.utils.MyFilesUtils.clearScreenshotsFolder;
+
 public class TestListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
@@ -48,6 +50,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onStart(ITestContext context) {
         ITestListener.super.onStart(context);
+        clearScreenshotsFolder();
     }
 
     @Override
